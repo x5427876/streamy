@@ -1,6 +1,7 @@
 import { connect } from "react-redux"
 import { fetchStreams } from "../../actions"
 import react from 'react'
+import faker from 'faker'
 import { Link } from 'react-router-dom'
 
 class StreamList extends react.Component {
@@ -21,13 +22,14 @@ class StreamList extends react.Component {
 
     renderList() {
         return this.props.streams.map(stream => {
+            const avatar = faker.image.avatar()
             return (
-                <div className='item' key={stream.id}>
+                <div className='flex my-8 border hover:bg-gray-100' key={stream.id}>
                     {this.renderAdmin(stream)}
-                    <i className='large middle aligned icon camera' />
-                    <div className='content'>
-                        <Link to={`/streams/${stream.id}`} className='header'>{stream.title}</Link>
-                        <div className='description'>{stream.description}</div>
+                    <img src={avatar} />
+                    <div className='content ml-8 py-8'>
+                        <Link to={`/streams/${stream.id}`} className='header text-3xl text-blue-600'>{stream.title}</Link>
+                        <div className='mt-4 text-bold text-2xl text-gray-500'>{stream.description}</div>
                     </div>
                 </div>
             )
@@ -38,7 +40,7 @@ class StreamList extends react.Component {
         if (this.props.isSignedIn) {
             return (
                 <div style={{ textAlign: 'right' }}>
-                    <Link to='/streams/new' className='ui button primary'>Create Stream</Link>
+                    <Link to='/streams/new' className='google bg-blue-500 py-3 px-8 rounded-xl text-white text-xl hover:bg-white'>Create Stream</Link>
                 </div>
             )
         }
@@ -47,7 +49,6 @@ class StreamList extends react.Component {
     render() {
         return (
             < div>
-                <h2>Streams</h2>
                 <div className='ui celled list'>
                     {this.renderList()}
                 </div>

@@ -31,7 +31,7 @@ class StreamForm extends react.Component {
     render() {
         return (  //傳入submit後想執行的動作至redux foorm提供函數handleSubmit()內
             <form className='ui form error' onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                <Field name='title' component={this.renderInput} label='Enter Title' />
+                <Field name='title' component={this.renderInput} label='Enter Title'/>
                 <Field name='description' component={this.renderInput} label='Enter Descrpition' />
                 <button className='ui button primary'>Submit</button>
             </form>
